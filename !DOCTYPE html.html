@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Food Rescue Goa</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f6f7f5;
+    color: #222;
+}
+
+header {
+    background: #168447;
+    color: white;
+    padding: 16px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #d9ff80;
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 18px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.cart-btn {
+    background: white;
+    color: #168447;
+    padding: 9px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+section {
+    display: none;
+    padding: 45px 7%;
+}
+
+section.active {
+    display: block;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.hero-text {
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 18px;
+}
+
+.hero h1 span {
+    color: #168447;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.main-btn {
+    margin-top: 25px;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    background: #168447;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.hero-box {
+    background: #dff5e5;
+    border-radius: 25px;
+    padding: 55px;
+    font-size: 100px;
+    text-align: center;
+}
+
+/* FOOD */
+
+.page-title {
+    margin-bottom: 30px;
+}
+
+.page-title h2 {
+    font-size: 34px;
+}
+
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.food-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.food-img {
+    height: 150px;
+    background: #e9f4eb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+}
+
+.food-info {
+    padding: 18px;
+}
+
+.food-info h3 {
+    margin-bottom: 7px;
+}
+
+.restaurant {
+    color: #777;
+    font-size: 14px;
+}
+
+.price {
+    margin: 12px 0;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 8px;
+}
+
+.new-price {
+    color: #168447;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.discount {
+    display: inline-block;
+    background: #ffe7a3;
+    padding: 5px 9px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.add-btn {
+    width: 100%;
+    padding: 11px;
+    border: none;
+    background: #168447;
+    color: white;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+/* HOW IT WORKS */
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 25px;
+}
+
+.step {
+    background: white;
+    padding: 28px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.step-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+/* CART */
+
+.cart-box {
+    background: white;
+    max-width: 700px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.total {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.demo-note {
+    background: #fff3cd;
+    padding: 14px;
+    border-radius: 8px;
+    margin-top: 20px;
+    color: #735c00;
+}
+
+/* ABOUT */
+
+.about {
+    max-width: 850px;
+    margin: auto;
+    line-height: 1.8;
+}
+
+.about h2 {
+    margin-bottom: 20px;
+}
+
+.about p {
+    margin-bottom: 18px;
+}
+
+/* CONTACT */
+
+.contact-box {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.contact-box input,
+.contact-box textarea {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0 15px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+}
+
+.contact-box textarea {
+    height: 120px;
+}
+
+footer {
+    background: #123c29;
+    color: white;
+    padding: 30px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+@media(max-width:700px) {
+
+    header {
+        padding: 14px;
+    }
+
+    nav button {
+        margin-left: 6px;
+        font-size: 12px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 30px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero-box {
+        padding: 35px;
+        font-size: 70px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+🍃 Food <span>Rescue</span>
+</div>
+
+<nav>
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('food')">Food</button>
+<button onclick="showPage('about')">About</button>
+<button onclick="showPage('how')">How It Works</button>
+<button onclick="showPage('contact')">Contact</button>
+<button class="cart-btn" onclick="showPage('cart')">
+🛒 Cart (<span id="cartCount">0</span>)
+</button>
+</nav>
+
+</header>
+
+
+<!-- HOME -->
+
+<section id="home" class="active">
+
+<div class="hero">
+
+<div class="hero-text">
+
+<h1>
+Save Food.<br>
+<span>Feed People.</span>
+</h1>
+
+<p>
+Food Rescue connects surplus food from bakeries,
+hotels and restaurants with people looking for
+affordable meals.
+</p>
+
+<p>
+Get quality food at <b>60–70% off</b> while helping
+businesses reduce food waste.
+</p>
+
+<button class="main-btn" onclick="showPage('food')">
+🍱 View Food Available Today
+</button>
+
+</div>
+
+<div class="hero-box">
+🥐<br>
+🥪🍞
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOD -->
+
+<section id="food">
+
+<div class="page-title">
+
+<h2>🍱 Food Available Today</h2>
+
+<p>
+Fresh surplus food available at discounted prices.
+</p>
+
+</div>
+
+
+<div class="food-grid">
+
+<div class="food-card">
+
+<div class="food-img">🥪</div>
+
+<div class="food-info">
+
+<h3>Sandwich Pack</h3>
+
+<div class="restaurant">Sunrise Bakery • Panjim</div>
+
+<div class="discount">70% OFF</div>
+
+<div class="price">
+<span class="old-price">₹150</span>
+<span class="new-price">₹45</span>
+</div>
+
+<button class="add-btn"
+onclick="addToCart('Sandwich Pack',45)">
+Add to Cart
+</button>
+
+</div>
+</div>
+
+
+<div class="food-card">
+
+<div class="food-img">🥐</div>
+
+<div class="food-info">
+
+<h3>Croissant Pack</h3>
+
+<div class="restaurant">Goa Bake House • Bambolim</div>
+
+<div class="discount">65% OFF</div>
+
+<div class="price">
+<span class="old-price">₹200</span>
+<span class="new-price">₹70</span>
+</div>
+
+<button class="add-btn"
+onclick="addToCart('Croissant Pack',70)">
+Add to Cart
+</button>
+
+</div>
+</div>
+
+
+<div class="food-card">
+
+<div class="food-img">🍛</div>
+
+<div class="food-info">
+
+<h3>Veg Meal Box</h3>
+
+<div class="restaurant">Green Leaf Restaurant • Porvorim</div>
+
+<div class="discount">60% OFF</div>
+
+<div class="price">
+<span class="old-price">₹180</span>
+<span class="new-price">₹72</span>
+</div>
+
+<button class="add-btn"
+onclick="addToCart('Veg Meal Box',72)">
+Add to Cart
+</button>
+
+</div>
+</div>
+
+
+<div class="food-card">
+
+<div class="food-img">🍞</div>
+
+<div class="food-info">
+
+<h3>Fresh Bread Bundle</h3>
+
+<div class="restaurant">Daily Bread • Mapusa</div>
+
+<div class="discount">65% OFF</div>
+
+<div class="price">
+<span class="old-price">₹120</span>
+<span class="new-price">₹42</span>
+</div>
+
+<button class="add-btn"
+onclick="addToCart('Fresh Bread Bundle',42)">
+Add to Cart
+</button>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section id="how">
+
+<div class="page-title">
+
+<h2>How Food Rescue Works</h2>
+
+<p>A simple system that benefits everyone.</p>
+
+</div>
+
+
+<div class="steps">
+
+<div class="step">
+
+<div class="step-icon">🏪</div>
+
+<h3>1. Food Businesses</h3>
+
+<p>
+Bakeries, restaurants and hotels list
+their unsold food at the end of the day.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-icon">📱</div>
+
+<h3>2. Customers Browse</h3>
+
+<p>
+People nearby can view available food
+and see the discounted prices.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-icon">💰</div>
+
+<h3>3. Affordable Food</h3>
+
+<p>
+Customers get quality food at
+approximately 60–70% discounted prices.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-icon">🚴</div>
+
+<h3>4. Delivery</h3>
+
+<p>
+Delivery partners can earn income by
+helping deliver rescued food.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<div class="about">
+
+<h2>❤️ About Food Rescue</h2>
+
+<p>
+Food Rescue is a student business concept designed
+to reduce food waste while making meals more
+affordable for communities.
+</p>
+
+<p>
+Every day, bakeries, restaurants and hotels may have
+food that remains unsold even though it is still suitable
+for consumption within the appropriate food-safety
+period.
+</p>
+
+<p>
+Instead of allowing this surplus food to go to waste,
+Food Rescue provides a platform where businesses can
+offer it at discounted prices to people nearby.
+</p>
+
+<p>
+The concept can create value for three groups:
+<b>food businesses, customers and delivery partners.</b>
+</p>
+
+<p>
+🌱 Less food waste<br>
+💰 Additional revenue for businesses<br>
+🍱 Affordable food for customers<br>
+🚴 Employment opportunities for delivery partners
+</p>
+
+</div>
+
+</section>
+
+
+<!-- CART -->
+
+<section id="cart">
+
+<div class="page-title">
+
+<h2>🛒 Your Cart</h2>
+
+</div>
+
+<div class="cart-box">
+
+<div id="cartItems">
+<p>Your cart is empty.</p>
+</div>
+
+<div class="total">
+Total: ₹<span id="total">0</span>
+</div>
+
+<div class="demo-note">
+⚠️ <b>Project Demonstration Only</b><br>
+This website is a prototype. No real payment,
+UPI, credit card or actual order processing is
+connected.
+</div>
+
+<button class="main-btn" onclick="placeOrder()">
+Place Demo Order
+</button>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<div class="contact-box">
+
+<h2>📞 Contact Food Rescue</h2>
+
+<br>
+
+<label>Name</label>
+<input type="text" placeholder="Enter your name">
+
+<label>Email</label>
+<input type="email" placeholder="Enter your email">
+
+<label>Message</label>
+<textarea placeholder="Enter your message"></textarea>
+
+<button class="main-btn"
+onclick="alert('Thank you! This is a project demonstration.')">
+Send Message
+</button>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>🍃 Food Rescue Goa</p>
+
+<p>Save Food • Reduce Waste • Support Communities</p>
+
+<p style="margin-top:10px;font-size:13px;">
+Student Project Prototype
+</p>
+
+</footer>
+
+
+<script>
+
+let cart = [];
+let total = 0;
+
+function showPage(page) {
+
+    document.querySelectorAll("section").forEach(section => {
+        section.classList.remove("active");
+    });
+
+    document.getElementById(page).classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+function addToCart(name, price) {
+
+    cart.push({
+        name: name,
+        price: price
+    });
+
+    total += price;
+
+    document.getElementById("cartCount").innerText = cart.length;
+
+    updateCart();
+
+    alert(name + " added to your cart!");
+}
+
+
+function updateCart() {
+
+    const container = document.getElementById("cartItems");
+
+    if (cart.length === 0) {
+
+        container.innerHTML = "<p>Your cart is empty.</p>";
+
+        return;
+    }
+
+    container.innerHTML = "";
+
+    cart.forEach((item, index) => {
+
+        container.innerHTML += `
+        <div class="cart-item">
+
+            <div>
+                <b>${item.name}</b>
+                <br>
+                <small>Food Rescue Demo</small>
+            </div>
+
+            <div>
+                ₹${item.price}
+                <button
+                onclick="removeItem(${index})"
+                style="margin-left:10px;border:none;background:none;color:red;cursor:pointer;">
+                ✕
+                </button>
+            </div>
+
+        </div>
+        `;
+
+    });
+
+    document.getElementById("total").innerText = total;
+}
+
+
+function removeItem(index) {
+
+    total -= cart[index].price;
+
+    cart.splice(index, 1);
+
+    document.getElementById("cartCount").innerText = cart.length;
+
+    updateCart();
+}
+
+
+function placeOrder() {
+
+    if (cart.length === 0) {
+
+        alert("Please add some food to your cart first.");
+
+        return;
+    }
+
+    alert(
+        "🎉 Demo Order Confirmed!\n\n" +
+        "This is only a student project prototype.\n" +
+        "No payment has been taken and no real order has been placed."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
